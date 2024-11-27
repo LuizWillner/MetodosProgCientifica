@@ -25,26 +25,31 @@ def runge_kutta_4(
     while ti < tfinal:
         print(f'============{i+1}a iteração (i={i})=============')
         
+        # k1
         compart_t = ti
         compart_y = wi
         k1 = h * f(compart_t, compart_y)
-        print(f'k1 = f({compart_t:.4f}; {compart_y:.8f}) = {k1:.8f}')
+        print(f'k1 = h * f({compart_t:.4f}; {compart_y:.8f}) = {k1:.8f}')
         
+        # k2
         compart_t = ti + h/2
         compart_y = wi + (1/2)*k1
         k2 = h * f(compart_t, compart_y)
-        print(f'k2 = f({compart_t:.4f}; {compart_y:.8f}) = {k2:.8f}')
+        print(f'k2 = h * f({compart_t:.4f}; {compart_y:.8f}) = {k2:.8f}')
         
+        # k3
         compart_t = ti + h/2
         compart_y = wi + (1/2)*k2
         k3 = h * f(compart_t, compart_y)
-        print(f'k3 = f({compart_t:.4f}; {compart_y:.8f}) = {k3:.8f}')
+        print(f'k3 = h * f({compart_t:.4f}; {compart_y:.8f}) = {k3:.8f}')
         
+        # k4
         compart_t = ti + h
         compart_y = wi + k3
         k4 = h * f(compart_t, compart_y)
-        print(f'k4 = f({compart_t:.4f}; {compart_y:.8f}) = {k4:.8f}')
+        print(f'k4 = h * f({compart_t:.4f}; {compart_y:.8f}) = {k4:.8f}')
         
+        # w(i+1)
         wi = wi + (1/6)*(k1 + 2*k2 + 2*k3 + k4)
         ti = ti + h
         i += 1

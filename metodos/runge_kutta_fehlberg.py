@@ -38,37 +38,43 @@ def runge_kutta_fehlberg(
         print(f'h = {h:.4f}')
         print()
         
+        # k1
         compart_t = ti
         compart_y = wi
         k1 = h * f(compart_t, compart_y)
-        print(f'k1 = f({compart_t:.4f}; {compart_y:.8f}) = {k1:.8f}')
+        print(f'k1 = h * f({compart_t:.4f}; {compart_y:.8f}) = {k1:.8f}')
         
+        # k2
         compart_t = ti + h/4
         compart_y = wi + (1/4)*k1
         k2 = h * f(compart_t, compart_y)
-        print(f'k2 = f({compart_t:.4f}; {compart_y:.8f}) = {k2:.8f}')
+        print(f'k2 = h * f({compart_t:.4f}; {compart_y:.8f}) = {k2:.8f}')
         
+        # k3
         compart_t = ti + (3/8)*h
         compart_y = wi + (3/32)*k1 + (9/32)*k2
         k3 = h * f(compart_t, compart_y)
-        print(f'k3 = f({compart_t:.4f}; {compart_y:.8f}) = {k3:.8f}')
+        print(f'k3 = h * f({compart_t:.4f}; {compart_y:.8f}) = {k3:.8f}')
         
+        # k4
         compart_t = ti + (12/13)*h
         compart_y = wi + (1932/2197)*k1 - (7200/2197)*k2 + (7296/2197)*k3
         k4 = h * f(compart_t, compart_y)
-        print(f'k4 = f({compart_t:.4f}; {compart_y:.8f}) = {k4:.8f}')
+        print(f'k4 = h * f({compart_t:.4f}; {compart_y:.8f}) = {k4:.8f}')
         
+        # k5
         compart_t = ti + h
         compart_y = wi + (439/216)*k1 - 8*k2 + (3680/513)*k3 - (845/4104)*k4
         k5 = h * f(compart_t, compart_y)
-        print(f'k5 = f({compart_t:.4f}; {compart_y:.8f}) = {k5:.8f}')
+        print(f'k5 = h * f({compart_t:.4f}; {compart_y:.8f}) = {k5:.8f}')
         
+        # k6
         compart_t = ti + h/2
         compart_y = wi - (8/27)*k1 + 2*k2 - (3544/2565)*k3 + (1859/4104)*k4 - (11/40)*k5
         k6 = h * f(compart_t, compart_y)
-        print(f'k6 = f({compart_t:.4f}; {compart_y:.8f}) = {k6:.8f}')
+        print(f'k6 = h * f({compart_t:.4f}; {compart_y:.8f}) = {k6:.8f}')
         
-        
+        # w(i+1)
         wnext_ = wi + (16/135)*k1 + (6656/12825)*k3 + (28561/56430)*k4 - (9/50)*k5 + (2/55)*k6
         wnext = wi + (25/216)*k1 + (1408/2565)*k3 + (2197/4104)*k4 - (1/5)*k5
         print()
