@@ -1,16 +1,34 @@
 import math
-# from metodos.euler import euler
+from metodos.euler import euler
+from metodos.runge_kutta_2 import runge_kutta_2
 from metodos.runge_kutta_4 import runge_kutta_4
 from metodos.runge_kutta_fehlberg import runge_kutta_fehlberg
 from metodos.preditor_corretor_4 import preditor_corretor_4
 
 
 def f(t, y):
-    y_ = math.sin(t) + math.e**(-t) # inserir expressão aqui
+    y_ = math.e**(t - y) # inserir expressão aqui
+    # y_ = t**(-2) * (math.sin(2*t) - 2*t*y) # inserir expressão aqui
     return y_
 
 if __name__ == "__main__":
     res = None 
+    
+    # res = euler(
+    #     t0 = 1,
+    #     w0 = 2,
+    #     h=0.5,
+    #     tfinal=2,
+    #     f=f
+    # )
+    
+    res = runge_kutta_2(
+        t0=0,
+        w0=1,
+        h=0.5,
+        tfinal=1,
+        f=f
+    )
     
     # res = runge_kutta_4(
     #     t0=0,
@@ -20,16 +38,16 @@ if __name__ == "__main__":
     #     f=f
     # )
     
-    res = runge_kutta_fehlberg(
-        t0=0,
-        w0=0,
-        h=0.135,
-        tfinal=1,
-        tol=10**(-4),
-        hmax=0.25,
-        hmin=0.02,
-        f=f   
-    )
+    # res = runge_kutta_fehlberg(
+    #     t0=1,
+    #     w0=-2,
+    #     h=0.5,
+    #     tfinal=3,
+    #     tol=10**(-4),
+    #     hmax=0.5,
+    #     hmin=0.02,
+    #     f=f   
+    # )
     
     # res = preditor_corretor_4(
     #     t=(2, 2.25,        2.5,         2.75,      3),
